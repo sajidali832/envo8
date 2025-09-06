@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 330 33% 98%; /* Softer light base */
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --primary: 333 90% 56%; /* Vibrant Rose */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 330 24% 92%;
+    --secondary-foreground: 240 10% 3.9%;
+
+    --muted: 330 20% 94%;
+    --muted-foreground: 240 5.9% 15%;
+
+    --accent: 260 84% 62%; /* Violet */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 330 20% 88%;
+    --input: 330 20% 92%;
+    --ring: 333 93% 56%;
+
+    --chart-1: 333 80% 60%;
+    --chart-2: 260 70% 60%;
+    --chart-3: 197 50% 38%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    
+    --radius: 0.8rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 333 83% 66%;
+    --primary-foreground: 333 100% 5%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 260 74% 70%;
+    --accent-foreground: 260 100% 6%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 333 83% 66%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-text-size-adjust: 100%;
+  }
+}
+
+@layer utilities {
+  .glow-primary {
+    @apply shadow-lg shadow-primary/30 transition-all hover:shadow-xl hover:shadow-primary/40;
+  }
+  .glow-accent {
+    @apply shadow-lg shadow-accent/30 transition-all hover:shadow-xl hover:shadow-accent/40;
+  }
+  /* Soft glass panel */
+  .glass {
+    @apply bg-white/60 backdrop-blur-md border border-white/60 dark:bg-zinc-900/50 dark:border-white/10;
+  }
+  /* Elevated card */
+  .card-elevated {
+    @apply shadow-md shadow-black/5 hover:shadow-lg hover:shadow-black/10 transition-shadow;
+  }
+  /* Header/Footer subtle gradient */
+  .surface-gradient {
+    background-image: linear-gradient(
+      180deg,
+      hsl(var(--background)) 0%,
+      hsl(var(--secondary)) 100%
+    );
+  }
+  /* Main background wash */
+  .page-wash {
+    background-image: radial-gradient(1200px 600px at 100% -10%, hsl(var(--accent)/0.08), transparent),
+      radial-gradient(900px 500px at -10% 10%, hsl(var(--primary)/0.08), transparent);
+  }
+  /* Hero background utility */
+  .bg-hero {
+    background-image: radial-gradient(1200px 500px at 50% -10%, hsl(var(--accent)/0.14), transparent),
+      radial-gradient(900px 400px at 80% 20%, hsl(var(--primary)/0.12), transparent),
+      linear-gradient(180deg, hsl(var(--secondary)) 0%, hsl(var(--background)) 60%);
+  }
+  /* Animated gradient text */
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease-in-out infinite;
+  }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
