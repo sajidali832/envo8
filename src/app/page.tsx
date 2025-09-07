@@ -4,12 +4,12 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/use-auth';
-import { Header } from '@/components/header';
-import { HeroSection } from '@/components/landing/hero';
+import { PremiumHeader } from '@/components/landing/premium-header';
+import { AnimatedHeroSection } from '@/components/landing/animated-hero';
 import { AboutSection } from '@/components/landing/about';
 import { ReviewsSection } from '@/components/landing/reviews';
 import { Footer } from '@/components/landing/footer';
-import { PlansSection } from '@/components/landing/plans-preview';
+import { PremiumPlansSection } from '@/components/landing/premium-plans';
 import { Separator } from '@/components/ui/separator';
 import { Hourglass } from 'lucide-react';
 
@@ -62,12 +62,12 @@ export default function Home() {
   // If not redirecting, it means no user is logged in, so show the landing page.
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
+      <PremiumHeader />
       <main className="flex-grow">
-        <HeroSection />
+        <AnimatedHeroSection />
         <AboutSection />
         <Separator className="my-12" />
-        <PlansSection />
+        <PremiumPlansSection />
         <ReviewsSection />
       </main>      
       <Footer />

@@ -19,12 +19,16 @@ const planDetails: { [key: string]: { dailyReturn: number; validityDays: number 
 
 export async function POST(request: NextRequest) {
   try {
-    // Verify the request is authorized (you can add API key check here)
+    // Verify the request is from Vercel Cron
     const authHeader = request.headers.get('authorization');
-    const expectedAuth = process.env.CRON_SECRET || 'your-secret-key';
+    const cronSecret = process.env.CRON_SECRET;
     
-    if (authHeader !== `Bearer ${expectedAuth}`) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // In production, check for Vercel's cron secret
+    if (process.env.NODE_ENV === 'production') {
+      if (authHeader !== `Bearer ${cronSecret}`) {
+        console.error('❌ Unauthorized cron request');
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      }
     }
 
     console.log('🚀 Starting daily earnings process...');
